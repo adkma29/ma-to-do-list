@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="vuek.css">
+    <!-- cdn vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>To do list</h2>
+        <form @submit.prevent="ajouterText">
+            <label for="text">Qu'est-ce qu'il y a à faire ?</label>
+            <input type="text" id="text" v-model="newtext" required="">
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <h2>Le tableau :</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Texte</th>
+                    <th>Fait ?</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in textArray" :key="index" :class="{ 'barre': item.fait }">
+                    <td>{{ item.text }}</td>
+                    <td><button @click="marquerFait(index)">{{ item.fait ? 'Annuler' : 'Fait' }}</button></td>
+                    <td><button @click="suppLigne(index)">Supprimer</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="vuek.js"></script>
+</body>
+</html>
